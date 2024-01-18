@@ -1,1 +1,4 @@
-export interface NewProductModalProps {}
+export interface NewProductModalProps {
+  isVisible: boolean;
+  onClose: () => void;
+}
