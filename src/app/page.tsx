@@ -7,8 +7,12 @@ import Button from "@/components/Button";
 import HomeIcon from "../assets/Svgs/home.svg";
 import NavigationOptions from "@/components/NavigationOptions";
 import ProductBoard from "@/components/ProductBoard";
+import NewProductModal from "@/components/NewProductModal";
+import { useState } from "react";
 
 export default function Home() {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
     <main className={styles.container}>
       <div className={styles["nav-bar"]}>
@@ -19,9 +23,13 @@ export default function Home() {
           <NavigationOptions icon={HomeIcon} label="Inicio" />
         </div>
         <div className={styles["product-display"]}>
-          <Button onClick={() => console.log("quasds")}>Novo</Button>
+          <Button onClick={() => setIsVisible(true)}>Novo</Button>
           <ProductBoard />
         </div>
+        <NewProductModal
+          isVisible={isVisible}
+          onClose={() => setIsVisible(false)}
+        />
       </div>
     </main>
   );
