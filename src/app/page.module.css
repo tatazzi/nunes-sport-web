@@ -1,0 +1,29 @@
+.container {
+  height: 100vh;
+}
+.nav-bar {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  padding-left: 20px;
+  background-color: #012031;
+  height: 15%;
+}
+.hero {
+  display: flex;
+  height: 90%;
+}
+.aside-nav {
+  display: flex;
+  background-color: #ccc;
+  flex-direction: column;
+  width: 200px;
+  height: 100%;
+  padding: 12px 10px;
+}
+.product-display {
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  flex-direction: column;
+}
