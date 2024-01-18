@@ -1,0 +1,33 @@
+.product-wrapper {
+  display: flex;
+  flex-direction: row;
+  border-color: gray;
+  border-width: 0px 0px 1px 0px;
+  height: 50px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 20px;
+}
+.info-section {
+  justify-content: space-between;
+  display: flex;
+  flex: 3;
+}
+.button-section {
+  flex-direction: row;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.button {
+  display: flex;
+  margin-right: 10px;
+  border-radius: 20px;
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.button :hover {
+  background-color: #eae5e5;
+}
