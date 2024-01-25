@@ -9,9 +9,13 @@
   padding: 10px 20px;
 }
 .info-section {
-  justify-content: space-between;
+  /* justify-content: space-between; */
   display: flex;
   flex: 3;
+}
+.products-itens {
+  min-width: 300px;
+  max-width: 300px;
 }
 .button-section {
   flex-direction: row;

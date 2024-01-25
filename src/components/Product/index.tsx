@@ -7,7 +7,7 @@ import Edit from "../../assets/Svgs/edit.svg";
 import Trash from "../../assets/Svgs/trash.svg";
 
 const Product = ({
-  id,
+  code,
   productName,
   price,
   description,
@@ -17,10 +17,23 @@ const Product = ({
   return (
     <div className={styles["product-wrapper"]}>
       <div className={styles["info-section"]}>
-        <a>{id}</a>
-        <a>{productName}</a>
-        <a>{price}</a>
-        <a>{description}</a>
+        <div className={styles["products-itens"]}>
+          <a>{code}</a>
+        </div>
+        <div className={styles["products-itens"]}>
+          <a>{productName}</a>
+        </div>
+        <div className={styles["products-itens"]}>
+          <a>
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(price)}
+          </a>
+        </div>
+        <div className={styles["products-itens"]}>
+          <a>{description}</a>
+        </div>
       </div>
       <div className={styles["button-section"]}>
         <div className={styles.button} onClick={onClickEdit}>

@@ -4,84 +4,77 @@ import Image from "next/image";
 import styles from "./ProductBoard.module.css";
 import { ProductBoardProps } from "./ProductBoard.utils";
 import Product from "../Product";
+import { apiFetch } from "@/service/Api";
+import { useEffect, useState } from "react";
+import Button from "../Button";
+import NewProductModal from "../NewProductModal";
+import EditProductModal from "../EditProductModal";
 
-type products = {
-  id: string;
-  productName: string;
+interface Product {
+  code: string;
+  name: string;
   price: number;
   description: string;
-};
-const DATA: products[] = [
-  {
-    id: "2",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "descricão completa do produto",
-  },
-  {
-    id: "3",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-  {
-    id: "4",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-  {
-    id: "5",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-  {
-    id: "6",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-  {
-    id: "7",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-  {
-    id: "8",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-  {
-    id: "9",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-  {
-    id: "10",
-    productName: "Bicicleta",
-    price: 2000,
-    description: "Descricão completa do produto",
-  },
-];
+}
 
 const ProductBoard = ({}: ProductBoardProps) => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleEditModal, setIsVisibleEditModal] = useState(false);
+
+  const getProducts = async () => {
+    try {
+      const product = await apiFetch("/products", "GET");
+      setProducts(product);
+    } catch (error) {}
+  };
+
+  const deleteProduct = async (code: string) => {
+    try {
+      await apiFetch(`/deleteProduct/${code}`, "DELETE");
+      getProducts();
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
   return (
-    <div className={styles["container"]}>
-      {DATA.map((product) => (
-        <Product
-          key={product.id}
-          id={product.id}
-          productName={product.productName}
-          price={product.price}
-          description={product.description}
-          onClickDelete={() => {}}
-          onClickEdit={() => {}}
+    <div>
+      <Button onClick={() => setIsVisible(true)}>Novo</Button>
+      <div className={styles["container"]}>
+        {products.map((product) => (
+          <Product
+            key={product.code}
+            code={product.code}
+            productName={product.name}
+            price={product.price}
+            description={product.description}
+            onClickDelete={() => deleteProduct(product.code)}
+            onClickEdit={() => {
+              setSelectedProduct(product);
+              setIsVisibleEditModal(true);
+            }}
+          />
+        ))}
+      </div>
+      <NewProductModal
+        onFinishRegister={getProducts}
+        isVisible={isVisible}
+        onClose={() => setIsVisible(false)}
+      />
+      {selectedProduct && (
+        <EditProductModal
+          initialDescription={selectedProduct.description}
+          initialName={selectedProduct.name}
+          initialPrice={selectedProduct.price}
+          code={selectedProduct.code}
+          onFinishEdit={getProducts}
+          isVisible={isVisibleEditModal}
+          onClose={() => setIsVisibleEditModal(false)}
         />
-      ))}
+      )}
     </div>
   );
 };
