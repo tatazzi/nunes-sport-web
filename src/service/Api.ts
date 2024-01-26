@@ -19,10 +19,8 @@ export const apiFetch = async (
 
   try {
     const response = await fetch(url, options);
-    console.log("response fora", response);
 
     if (!response.ok) {
-      console.log("response.", response);
       throw new Error(`Error: ${response.statusText}`);
     }
 
