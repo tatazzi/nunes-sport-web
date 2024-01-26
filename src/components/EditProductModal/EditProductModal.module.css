@@ -38,3 +38,29 @@
   top: 0;
   z-index: 0;
 }
+
+@media screen and (max-width: 500px) {
+  .modal-content {
+    width: 97%;
+  }
+}
+@media screen and ((min-width: 501px ) and (max-width:777px)) {
+  .modal-content {
+    width: 70%;
+  }
+}
+@media screen and ((min-width: 778px ) and (max-width:1024px)) {
+  .modal-content {
+    width: 50%;
+  }
+}
+@media screen and ((min-width: 1025px ) and (max-width:1600px)) {
+  .modal-content {
+    width: 35%;
+  }
+}
+@media screen and ((min-width: 1601px ) and (max-width:1920px)) {
+  .modal-content {
+    width: 30%;
+  }
+}

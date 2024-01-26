@@ -3,6 +3,10 @@
   border: solid;
   border-width: 1;
   border-radius: 5px;
+  @media screen and (min-width: 375px) {
+    overflow-x: auto;
+    width: 100%;
+  }
 }
 .empty-list {
   margin-top: 40px;

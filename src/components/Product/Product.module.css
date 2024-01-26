@@ -5,11 +5,9 @@
   border-width: 0px 0px 1px 0px;
   height: 50px;
   align-items: center;
-  justify-content: space-around;
   padding: 10px 20px;
 }
 .info-section {
-  /* justify-content: space-between; */
   display: flex;
   flex: 3;
 }
@@ -34,4 +32,10 @@
 }
 .button :hover {
   background-color: #eae5e5;
+}
+@media screen and (min-width: 768px) {
+  .product-wrapper {
+    width: 100%;
+    flex: 1;
+  }
 }
