@@ -20,9 +20,6 @@ const EditProductModal = ({
 
   const handleClose = () => {
     onClose();
-    setProductName("");
-    setDescription("");
-    setPrice(0);
   };
 
   const editProduct = async (
